@@ -1,0 +1,20 @@
+{
+  "name": "slidev-template",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "slidev slides.md --open false",
+    "build": "slidev build slides.md && node scripts/postbuild.mjs",
+    "export": "slidev export slides.md"
+  },
+  "devDependencies": {
+    "@fontsource/ibm-plex-mono": "latest",
+    "@fontsource/ibm-plex-sans": "latest",
+    "@slidev/cli": "latest",
+    "playwright-chromium": "^1.60.0",
+    "qrcode": "latest"
+  },
+  "dependencies": {
+    "@slidev/theme-default": "^0.25.0"
+  }
+}
