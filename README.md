@@ -15,8 +15,8 @@ template-slidev/
 │   ├── BaseImg.vue            # Image component that respects the GitHub Pages base path
 │   ├── QrCard.vue             # QR code card with title
 │   ├── Cites.vue              # Per-slide citation footnotes
-│   ├── References.vue         # Final bibliography slide generated from references.ts
-│   ├── references.ts          # Single source of truth for bibliography entries
+│   ├── References.vue         # Final bibliography slide generated from bibliography.ts
+│   ├── bibliography.ts        # Single source of truth for bibliography entries
 │   ├── Logo.vue               # Placeholder SVG logo
 │   └── FlowDiagram.vue        # Reusable animated step diagram with click reveal
 ├── scripts/postbuild.mjs      # Generates redirects for direct links to individual slides
@@ -83,7 +83,7 @@ Generates a QR code at runtime and displays it together with a title.
 <References />
 ```
 
-The citation system is based on `components/references.ts`.
+The citation system is based on `components/bibliography.ts`.
 
 Bibliography entries are defined in one place and reused both for per-slide citation notes and for the final references slide.
 
@@ -100,7 +100,7 @@ Provide the stages as data instead of creating a dedicated component for every d
 ## Customization
 
 1. Edit `slides.md` to define the title, authors, and presentation content.
-2. Update `components/references.ts` with your bibliography.
+2. Update `components/bibliography.ts` with your bibliography.
 3. Replace or customize `Logo.vue` with your own logo.
 4. Customize colors, typography, layouts, and utility classes in `styles/index.css`.
 5. Add images and other static assets to `public/` when needed.

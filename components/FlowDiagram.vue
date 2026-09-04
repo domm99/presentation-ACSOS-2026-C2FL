@@ -45,7 +45,9 @@ const shown = (index: number) => c.value >= index
         class="flow-arrow is-active"
         :class="{ 'flow-hidden': !shown(i + 1) }"
       >
-        →
+        <svg viewBox="0 0 24 16" class="arrow-svg" aria-hidden="true">
+          <path d="M 2 8 L 18 8 M 12 2 L 19 8 L 12 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
       </div>
     </template>
   </div>
@@ -121,6 +123,11 @@ const shown = (index: number) => c.value >= index
 
 .flow-arrow.is-active {
   color: var(--deck-orange);
-  transform: scale(1.25);
+  transform: scale(1.1);
+}
+
+.arrow-svg {
+  width: 1.5rem;
+  height: 1.1rem;
 }
 </style>

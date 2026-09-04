@@ -14,19 +14,11 @@ defaults:
   transition: slide-left
 ---
 
-<!--
-Cover slide.
-- Remove the .cover-badges block if you don't have artifact badges.
-- Swap <Logo /> for your own logo (see components/Logo.vue), or a
-  <BaseImg src="logo.png" /> pointing at a file in /public.
-- Both <QrCard> entries are optional; delete the row if you don't need them.
--->
-
-
 <div class="cover-center-shell">
-  
-  <h1>C2FL: Clustered Continual Federated Learning under Spatial and Temporal Drift </h1>
-  <h2 class="cover-subtitle">The 7th IEEE International Conference on Autonomic Computing and Self-Organizing Systems</h2>
+  <p class="cover-kicker">ACSOS 2026 · 7th IEEE International Conference on Autonomic Computing and Self-Organizing Systems</p>
+  <h1 class="cover-paper-title">C²FL: Clustered Continual<br>Federated Learning</h1>
+  <h2 class="cover-subtitle">Under Spatial and Temporal Drift</h2>
+  <div class="cover-rule" />
 
   <div class="cover-meta-row">
     <div class="cover-mini-meta">
@@ -68,364 +60,389 @@ Cover slide.
   </div>
 </div>
 
+
+
 ---
-layout: two-cols
+layout: default
+class: c2-viz-slide
 ---
 
-# Learning at the edge
+<div class="c2-slide-shell">
 
-Devices in collective systems continuously sense their surroundings and must adapt their behavior locally.
+# Intelligence is moving to the edge
 
-Examples:
+<div class="c2-split">
+<div>
 
-- connected vehicles
-- drone swarms
-- participatory sensing
+Devices in collective systems continuously sense their surroundings and adapt their behavior locally.
 
-::right::
+<ul class="c2-clean-list">
+  <li><strong>Connected vehicles</strong> learn from traffic conditions</li>
+  <li v-click="1"><strong>Drone swarms</strong> learn from the areas they monitor</li>
+  <li v-click="2"><strong>Participatory sensing</strong> learns from personal devices</li>
+</ul>
 
-> **VISUAL PLACEHOLDER**  
-> Mobile devices sensing different physical environments
+<div v-click="3" class="c2-value-strip">
+  <span>The systems question</span>
+  How can devices learn collectively when observations cannot be centralized?
+</div>
 
-### Why not centralize the data?
+</div>
+<C2EdgeScenario :click="$clicks" />
+</div>
+</div>
 
-Privacy constraints, communication costs, and limited connectivity make centralized training impractical.
-
-<!--
-Start from the application setting: intelligence is moving to the edge, where data is generated. The issue is not only scale; raw observations may be sensitive or expensive to transmit.
+<!-- [Sources]
+Context and motivating domains: supplied C²FL paper, Introduction.
 -->
 
 ---
-layout: two-cols
+layout: default
+class: c2-stage-slide
 ---
 
-# Federated learning keeps data local
+<div class="c2-slide-shell">
 
-Each device:
+# Federated learning keeps observations local
 
-1. trains on its own observations
-2. shares model updates—not raw data
-3. receives an aggregated model
+> A distributed learning paradigm where devices collaboratively train a model without sharing their raw data.
 
-The process repeats over multiple communication rounds.
+<FederatedLearning :click="$clicks" />
+<div v-click="1" class="click-marker" /><div v-click="2" class="click-marker" /><div v-click="3" class="click-marker" />
 
-::right::
+<p v-click="3" class="c2-centered-claim">The promise: <strong>collective learning</strong> without centralized data collection.</p>
 
-> **VISUAL PLACEHOLDER**  
-> Standard federated learning loop:  
-> devices → model updates → aggregation → shared model
+<Cites refs="1" />
+</div>
 
-### The promise
-
-Collective learning without centralized data collection.
-
-<!--
-Introduce only the basic FL loop. Emphasize that data stays on the devices while knowledge is combined through model updates.
+<!-- [Sources]
+Federated learning process: supplied C²FL paper, Section II-A.
 -->
 
 ---
-layout: two-cols
+layout: default
+class: c2-viz-slide
 ---
+
+<div class="c2-slide-shell">
 
 # One global model may fit no region well
 
-Classical FL works best when clients observe similar data distributions.
+<div class="c2-split">
+<div>
 
-In spatial systems, this assumption often fails:
+- Nearby devices often sense **similar phenomena**.
+- Distant devices may experience **radically different conditions**.
+- Their local updates therefore optimize **different objectives**.
 
-- nearby devices sense similar phenomena
-- distant devices experience different conditions
+<div v-click="1" class="c2-inline-note teal">
+  <strong>Proximity-based non-IID data:</strong> distributions are approximately homogeneous <em>within</em> a region, but heterogeneous <em>across</em> regions.
+</div>
 
-::right::
+<div v-click="2" class="c2-inline-note orange">
+  <strong>Structure matters:</strong> heterogeneity follows the physical environment—it is not random across clients.
+</div>
 
-> **VISUAL PLACEHOLDER**  
-> Map with locally homogeneous colored regions and non-IID data across regions
+</div>
+<C2SpatialMap :click="$clicks" mode="heterogeneity" />
+</div>
+</div>
 
-### Proximity-based non-IID data
-
-Data is approximately homogeneous **within** a region, but heterogeneous **across** regions.
-
-<!--
-Move from generic non-IID data to the structured case that matters here. The heterogeneity is not random: it follows the physical environment.
+<!-- [Sources]
+Spatially structured heterogeneity: supplied C²FL paper, Figure 1 and Sections I–II-A.
 -->
 
 ---
-layout: two-cols
+layout: default
+class: c2-stage-slide
 ---
 
-# Clustered FL learns one model per region
+<div class="c2-slide-shell">
 
-Devices collaborate only with peers exposed to similar data.
+# Clustered FL specializes models by region
 
-This yields:
+> Devices exposed to similar distributions collaborate on one model per cluster instead of being forced into a single global average.
 
-- one learning group per spatial cluster
-- one specialized model per group
-- better alignment with local conditions
+<div class="c2-split reverse">
+<C2SpatialMap :click="$clicks" mode="clustered" />
+<div>
+  <div class="c2-feature-line"><strong>Local specialization</strong><span>One model follows the conditions of one region.</span></div>
+  <div v-click="1" class="c2-feature-line"><strong>Self-organization</strong><span>Clusters can emerge from local interactions.</span></div>
+  <div v-click="2" class="c2-feature-line catch"><strong>The catch</strong><span>Existing results mainly assume static membership.</span></div>
+</div>
+</div>
 
-::right::
+<Cites refs="3,4,5" />
+</div>
 
-> **VISUAL PLACEHOLDER**  
-> Three spatial clusters, each with its own regional model
-
-Self-organizing approaches can discover these clusters without a central coordinator—but existing results mainly assume **static nodes**.
-
-<small>[CITATION PLACEHOLDER: IoT paper] · [CITATION PLACEHOLDER: ACSOS 2024 paper]</small>
-
-<!--
-Connect the spatial structure to clustered FL. Mention your previous work as the starting point: decentralized clustering and regional model aggregation already work well when membership is stable.
+<!-- [Sources]
+Clustered FL and self-organizing spatial clusters: supplied C²FL paper, Sections I and II-A.
 -->
 
 ---
-layout: two-cols
+layout: default
+class: c2-stage-slide
 ---
+
+<div class="c2-slide-shell">
 
 # Mobility turns spatial drift into temporal drift
 
-A moving device encounters a sequence of region-specific distributions:
+<C2MobilityDrift :click="$clicks" />
+<div v-click="1" class="click-marker" /><div v-click="2" class="click-marker" /><div v-click="3" class="click-marker" />
 
-### Area 0 → Area 1 → Area 2 → Area 3
+<div v-click="4" class="c2-research-question">
+  Can a device <span class="mark-teal">adapt to the current region</span> without <span class="mark-orange">forgetting the previous ones</span>?
+</div>
 
-After every transition, the device must learn the new region without losing what it learned before.
+<div v-click="4" class="c2-value-strip"><span>The failure mode</span>Training on the current region can overwrite previously acquired knowledge: <strong>catastrophic forgetting</strong>.</div>
+</div>
 
-::right::
-
-> **VISUAL PLACEHOLDER**  
-> A device trajectory crossing four differently colored regions
-
-### The failure mode
-
-Adapting to the current region can overwrite knowledge from previous ones: **catastrophic forgetting**.
-
-<!--
-This is the key conceptual transition. The same heterogeneity that is spatial for the system becomes a temporal sequence for each mobile node.
+<!-- [Sources]
+Mobility-induced temporal drift and catastrophic forgetting: supplied C²FL paper, Sections I and III-D.
 -->
 
 ---
-layout: two-cols
+layout: default
+class: c2-stage-slide
 ---
+
+<div class="c2-slide-shell">
 
 # Continual learning adds memory across regions
 
-Continual learning is designed for models exposed to changing tasks or data distributions over time.
+> Continual learning enables a model to acquire new knowledge while preserving previously learned capabilities.
 
-The objective is twofold:
+<C2ContinualBalance :click="$clicks" />
+<div v-click="1" class="click-marker" />
 
-- **adapt** to the current environment
-- **retain** useful knowledge from past environments
+<p v-click="2" class="c2-centered-claim">Our idea: bring this <strong>adaptation–retention balance</strong> into decentralized clustered FL.</p>
 
-::right::
+<Cites refs="2" />
+</div>
 
-> **VISUAL PLACEHOLDER**  
-> New regional data entering a model while past knowledge is retained
-
-### Our idea
-
-Combine continual learning with decentralized clustered FL.
-
-<!--
-Keep the continual learning background short. The audience only needs the adaptation-versus-retention tension before seeing the proposed method.
+<!-- [Sources]
+Continual learning definition and motivation: supplied C²FL paper, Section II-B.
 -->
 
 ---
+layout: default
+class: c2-stage-slide
+---
+
+<div class="c2-slide-shell">
 
 # C²FL connects space and time
 
-<div class="grid grid-cols-3 gap-8 mt-12 text-center">
-  <div>
-    <div class="text-5xl mb-4">①</div>
-    <h3>Self-organizing clustering</h3>
-    <p>Form learning groups from local interactions.</p>
-  </div>
-  <div>
-    <div class="text-5xl mb-4">②</div>
-    <h3>Regional federated learning</h3>
-    <p>Build a model for each spatial cluster.</p>
-  </div>
-  <div>
-    <div class="text-5xl mb-4">③</div>
-    <h3>Continual adaptation</h3>
-    <p>Retain past knowledge while entering new regions.</p>
-  </div>
+<div class="c2-three-up">
+  <div class="c2-contribution teal"><div class="c2-number">01</div><h3>Self-organizing clusters</h3><p>Devices form spatial learning groups through local interactions.</p></div>
+  <div v-click="1" class="c2-contribution green"><div class="c2-number">02</div><h3>Regional federation</h3><p>Each cluster builds and disseminates its own consensus model.</p></div>
+  <div v-click="2" class="c2-contribution orange"><div class="c2-number">03</div><h3>Continual adaptation</h3><p>Each mobile device learns new regions while retaining past experience.</p></div>
 </div>
 
-<div class="mt-12 text-center text-2xl">
-  <strong>C²FL: Clustered Continual Federated Learning</strong>
+<p v-click="3" class="c2-centered-claim"><strong>C²FL</strong> = Clustered Continual Federated Learning</p>
+
+<Cites refs="4,5" />
 </div>
 
-<!--
-Present C²FL as the integration of three pieces, not as a monolithic algorithm. The novelty lies in making them work together under mobility-induced drift.
+<!-- [Sources]
+C²FL components: supplied C²FL paper, Section IV.
 -->
 
 ---
-layout: two-cols
+layout: default
+class: c2-viz-slide
 ---
 
-# Regional consensus emerges without a server
+<div class="c2-slide-shell">
 
-Within each self-organized cluster:
+# One round balances collective and individual knowledge
 
-1. devices train locally
-2. updates flow toward an elected leader
-3. the leader computes a weighted average
-4. the regional model flows back to the cluster
+<C2RoundPipeline :click="$clicks" />
+<div v-click="1" class="click-marker" /><div v-click="2" class="click-marker" /><div v-click="3" class="click-marker" />
 
-::right::
-
-> **VISUAL PLACEHOLDER**  
-> Cluster leader election, collect-cast aggregation, and gradient-cast dissemination
-
-Clusters continuously realign as topology changes.
-
-<!--
-Explain this at the system level rather than detailing the aggregate-computing primitives. The important point is that both cluster formation and model exchange are decentralized and self-stabilizing.
--->
-
----
-layout: two-cols
----
-
-# Two mechanisms balance retention and adaptation
-
-### Experience replay
-
-When a device leaves a region, samples from that region enter its local replay memory.
-
-Future local training combines current observations with past experience.
-
-::right::
-
-### Dwell-time-aware integration
-
-Immediately after moving, the device gives limited weight to the new regional model.
-
-That weight gradually increases while the device remains in the same region.
-
-> **VISUAL PLACEHOLDER**  
-> Regional-model weight increasing with dwell time
-
-<!--
-Replay protects prior knowledge; adaptive averaging avoids abruptly overwriting the device model with a newly received regional consensus. Stress that replay data remains local and is never shared.
--->
-
----
-
-# Experimental setup
-
-<div class="grid grid-cols-2 gap-x-16 gap-y-7 mt-8">
-  <div><strong>Dataset</strong><br>EMNIST with proximity-based non-IID partitions</div>
-  <div><strong>Environment</strong><br>4 spatial regions</div>
-  <div><strong>Population</strong><br>50 devices, 20% mobile</div>
-  <div><strong>Local data</strong><br>≈200 samples per device and round</div>
-  <div><strong>Training</strong><br>120 global rounds</div>
-  <div><strong>Mobility</strong><br>Region changes at rounds 30, 60, and 90</div>
-  <div><strong>Model</strong><br>Two-hidden-layer MLP</div>
-  <div><strong>Repetitions</strong><br>10 independent random seeds</div>
+<div v-click="4" class="c2-value-strip"><span>Why both?</span>Replay protects prior knowledge; adaptive averaging prevents abrupt overwriting after a move.</div>
 </div>
 
-<!--
-Explain that the benchmark deliberately controls both spatial heterogeneity and temporal shifts. Static devices provide a stable regional signal, while mobile devices follow circular trajectories across the four regions.
+<!-- [Sources]
+Protocol, replay, and dwell-time-aware adaptive averaging: supplied C²FL paper, Section IV and Algorithm 1.
 -->
 
 ---
-layout: two-cols
+layout: default
+class: c2-viz-slide
 ---
 
-# We isolate the contribution of each component
+<div class="c2-slide-shell">
 
-### Compared methods
+# Experimental setup: controlled spatial and temporal drift
 
-- **Local:** current regional data only
-- **FL:** regional federation, no replay
-- **CL:** replay, no regional federation
-- **C²FL:** replay + adaptive regional integration
+<div class="c2-setup-grid">
+<div class="c2-setup-facts">
+  <div class="c2-setup-fact teal"><span>01</span><strong>Spatial structure</strong><p><strong>EMNIST</strong> partitioned into 4 proximity-based non-IID regions.</p></div>
+  <div class="c2-setup-fact orange"><span>02</span><strong>Mobile population</strong><p><strong>50 devices</strong>; 20% move through the four regions.</p></div>
+  <div class="c2-setup-fact green"><span>03</span><strong>Evaluation rigor</strong><p><strong>120 rounds</strong>, two-layer MLP, 10 independent seeds.</p></div>
+</div>
 
-::right::
+<div class="c2-paper-figure-shell c2-subregions-panel">
+  <img src="./images/paper/subregions.png" alt="Four proximity-based non-IID spatial regions" class="c2-paper-figure contain" />
+  <p>Four local distributions define the controlled mobility path.</p>
+</div>
+</div>
 
-### Evaluation
+<div class="c2-timeline">
+  <div><strong>0–30</strong><span>Region A</span></div><div><strong>30–60</strong><span>Region B</span></div><div><strong>60–90</strong><span>Region C</span></div><div><strong>90–120</strong><span>Region D</span></div>
+</div>
 
-- per-region accuracy for each mobile device
-- cumulative accuracy across all regions
+<p class="c2-centered-claim">Each mobile node experiences three controlled distribution shifts along its trajectory.</p>
+</div>
 
-> **VISUAL PLACEHOLDER**  
-> Timeline: 0–30–60–90–120 with one region per interval
-
-<!--
-Frame the baselines as an ablation: FL tests collaboration without memory, while CL tests memory without federation. Figure 2 focuses on per-region accuracy for one representative mobile node.
+<!-- [Sources]
+Dataset, population, mobility schedule, model, and repetitions: supplied C²FL paper, Section V-A.
 -->
 
 ---
+layout: default
+class: c2-stage-slide
+---
+
+<div class="c2-slide-shell">
+
+# The baselines isolate each contribution
+
+<div class="c2-comparison-grid">
+  <div class="c2-comparison-card"><div>Local</div><p><strong>Neither mechanism</strong><br>Current regional data only.</p></div>
+  <div class="c2-comparison-card"><div>FL</div><p><strong>Collaboration only</strong><br>Regional federation, no replay.</p></div>
+  <div class="c2-comparison-card"><div>CL</div><p><strong>Memory only</strong><br>Replay, no regional federation.</p></div>
+  <div class="c2-comparison-card highlight"><div>C²FL</div><p><strong>Both mechanisms</strong><br>Replay + adaptive regional integration.</p></div>
+</div>
+
+<div class="c2-metrics-row">
+  <div><span>Metric 01</span><strong>Per-region accuracy</strong><p>Can a mobile node still solve earlier regions?</p></div>
+  <div><span>Metric 02</span><strong>Cumulative accuracy</strong><p>How much competence is retained overall?</p></div>
+</div>
+</div>
+
+<!-- [Sources]
+Ablation baselines and evaluation metrics: supplied C²FL paper, Section V-A.
+-->
+
+---
+layout: default
+class: c2-viz-slide
+---
+
+<div class="c2-slide-shell c2-result-slide">
 
 # Standard clustered FL forgets previous regions
 
-> **FIGURE PLACEHOLDER — Figure 2a**  
-> FBFL baseline: four per-area accuracy plots with mobility transitions at rounds 30, 60, and 90  
-> Suggested asset: `./images/fig2a-fbfl.png`
+<div class="c2-paper-figure-shell c2-wide-result">
+  <img src="./images/paper/moving-node-FL_merge.png" alt="Per-area accuracy for the FBFL baseline under mobility" class="c2-paper-figure contain" />
+</div>
 
-### After each move, accuracy shifts toward the current region and drops on regions visited before.
+<div class="c2-result-takeaway orange">After each move, accuracy shifts toward the <strong>current region</strong> and drops on regions visited before.</div>
 
-Mobility alone is enough to induce catastrophic forgetting in decentralized clustered FL.
+<p class="c2-result-answer"><span>RQ1</span> Mobility alone is enough to induce catastrophic forgetting.</p>
+</div>
 
-<!--
-Walk through one transition rather than every curve. When the device enters a new area, it learns that distribution but overwrites knowledge from previous areas. This answers RQ1.
+<!-- [Sources]
+Visual and interpretation: supplied C²FL paper, Figure 2a and Section V-B.
 -->
 
 ---
+layout: default
+class: c2-viz-slide
+---
+
+<div class="c2-slide-shell c2-result-slide">
 
 # C²FL retains knowledge across transitions
 
-> **FIGURE PLACEHOLDER — Figure 2b**  
-> C²FL: four per-area accuracy plots with mobility transitions at rounds 30, 60, and 90  
-> Suggested asset: `./images/fig2b-c2fl.png`
+<div class="c2-paper-figure-shell c2-wide-result">
+  <img src="./images/paper/moving-node-C2FL_merge.png" alt="Per-area accuracy for C2FL under mobility" class="c2-paper-figure contain" />
+</div>
 
-### Accuracy on previously visited regions is substantially preserved as the device moves.
+<div class="c2-result-takeaway teal">Accuracy on previously visited regions is <strong>substantially preserved</strong> as the device moves.</div>
 
-Replay limits forgetting, while regional integration supports faster adaptation to the current area.
+<p class="c2-result-answer"><span>RQ2</span> Replay limits forgetting; regional integration accelerates adaptation.</p>
+</div>
 
-<!--
-Use the same reading order as the previous slide so the contrast is immediate. This provides the qualitative evidence behind RQ2.
+<!-- [Sources]
+Visual and interpretation: supplied C²FL paper, Figure 2b and Section V-B.
 -->
 
 ---
+layout: default
+class: c2-viz-slide
+---
 
-# Takeaway
+<div class="c2-slide-shell c2-result-slide">
 
-<div class="text-3xl leading-relaxed mt-14">
-  Spatially clustered data becomes a <strong>continual learning problem</strong> when devices move.
+# C²FL combines retention with regional collaboration
+
+<div class="c2-comparison-result-grid">
+  <div class="c2-paper-figure-shell c2-comparison-figure">
+    <img src="./images/paper/comparison.png" alt="Cumulative accuracy comparison across Local, FL, CL, and C2FL methods" class="c2-paper-figure contain" />
+  </div>
+  <div class="c2-result-readout">
+    <div class="c2-readout-line"><strong>Local / FL</strong><span>limited retention after area transitions.</span></div>
+    <div class="c2-readout-line"><strong>CL</strong><span>replay improves retention but lacks regional consensus.</span></div>
+    <div class="c2-readout-line accent"><strong>C²FL</strong><span>best cumulative accuracy by combining both mechanisms.</span></div>
+  </div>
 </div>
 
-<div class="text-3xl leading-relaxed mt-10">
-  C²FL combines <strong>self-organizing clusters</strong>, <strong>regional federation</strong>, and <strong>continual adaptation</strong> in one decentralized process.
+<p class="c2-result-answer"><span>RQ2</span> The full method improves cumulative accuracy over the ablations.</p>
 </div>
 
-<div class="text-3xl leading-relaxed mt-10">
-  The result is better <strong>adaptation–retention balance</strong> under mobility-induced drift.
-</div>
-
-<!--
-Return to the central insight: mobility couples the collective spatial problem with an individual temporal problem. C²FL addresses both dimensions together.
+<!-- [Sources]
+Visual and interpretation: supplied C²FL paper, Figure 3 and Section V-B.
 -->
 
 ---
-layout: two-cols
+layout: default
+class: c2-stage-slide
 ---
+
+<div class="c2-slide-shell">
+
+# The key insight: mobility couples space and time
+
+<div class="c2-takeaway-stack">
+  <div><span>01</span><p>Spatially clustered data becomes a <strong>continual learning problem</strong> when devices move.</p></div>
+  <div v-click="1"><span>02</span><p>C²FL combines <strong>self-organizing clusters</strong>, <strong>regional federation</strong>, and <strong>continual adaptation</strong>.</p></div>
+  <div v-click="2"><span>03</span><p>The result is a better <strong>adaptation–retention balance</strong> under mobility-induced drift.</p></div>
+</div>
+</div>
+
+<!-- [Sources]
+Main conclusions: supplied C²FL paper, Section VI.
+-->
+
+---
+layout: default
+class: c2-end-slide
+transition: fade
+---
+
+<div class="c2-slide-shell">
 
 # Future work
 
-- Evaluate more complex datasets and realistic sensing tasks
-- Compare replay with regularization-based and hybrid continual learning methods
-- Replace abrupt region changes with gradual spatial distribution shifts
-- Study bounded and resource-aware replay memories
+<div class="c2-three-up future">
+  <div class="c2-contribution teal"><h3>Harder tasks</h3><p>More complex datasets and realistic sensing scenarios.</p></div>
+  <div class="c2-contribution green"><h3>Beyond replay</h3><p>Regularization-based and hybrid continual learning methods.</p></div>
+  <div class="c2-contribution orange"><h3>Smoother drift</h3><p>Gradual spatial transitions instead of abrupt region changes.</p></div>
+</div>
 
-::right::
+<div class="c2-future-grid">
+  <div><span>Current boundary</span><p>Controlled mobility and an unbounded local replay memory.</p></div>
+  <div><span>Next</span><p>Bounded, resource-aware memory policies for deployable mobile systems.</p></div>
+</div>
 
-> **VISUAL PLACEHOLDER**  
-> Roadmap from controlled spatial regions to realistic mobile sensing environments
+<p class="c2-centered-claim">Toward continual federated learning in real mobile collective systems.</p>
+</div>
 
-### Goal
-
-Move from a controlled proof of concept toward deployable learning in mobile collective systems.
-
-<!--
-Close on the path toward realism: harder tasks, alternative continual learning strategies, gradual shifts, and bounded memory. Then invite questions.
+<!-- [Sources]
+Future directions: supplied C²FL paper, Section VI and replay limitations in Section IV.
+Visual language inspired by the user-supplied colleague deck, slides.md.
 -->
