@@ -1,6 +1,6 @@
 ---
 theme: default
-title: Your Talk Title
+title: "C2FL: Clustered Continual Federated Learning under Spatial and Temporal Drift"
 titleTemplate: '%s'
 colorSchema: light
 routerMode: hash
@@ -22,28 +22,50 @@ Cover slide.
 - Both <QrCard> entries are optional; delete the row if you don't need them.
 -->
 
-<div class="cover-badges">
-  <div class="cover-badge badge-available" role="img" aria-label="Artifacts Available"></div>
-  <div class="cover-badge badge-reusable" role="img" aria-label="Artifacts Evaluated — Reusable"></div>
-</div>
-
-<div class="cover-qr-row" style="position: absolute; top: 1.4rem; left: 1.6rem; display: flex; gap: 1rem; align-items: center; z-index: 10;">
-  <QrCard title="Repository" url="https://github.com/your-org/your-repo" short="github.com/.../your-repo" :size="6.5" />
-</div>
 
 <div class="cover-center-shell">
-  <div class="cover-logo-wrap">
-    <Logo text="Your Project" />
-  </div>
-
-  <h2 class="cover-subtitle">A one-line subtitle describing your talk</h2>
+  
+  <h1>C2FL: Clustered Continual Federated Learning under Spatial and Temporal Drift </h1>
+  <h2 class="cover-subtitle">The 7th IEEE International Conference on Autonomic Computing and Self-Organizing Systems</h2>
 
   <div class="cover-meta-row">
-    <div class="cover-mini-meta"><strong style="color: var(--deck-orange);">First Author</strong> · Second Author · Third Author</div>
-    <div class="cover-mini-meta">Your Institution</div>
+    <div class="cover-mini-meta">
+      <strong style="color: var(--deck-orange);">Davide Domini</strong> 
+      · 
+      Gianluca Aguzzi 
+      · 
+      Lorenzo Pellegrini 
+      · 
+      Mirko Viroli 
+      · 
+      Lukas Esterle 
+    </div>
   </div>
 
-  <p class="cover-kicker">CONFERENCE 2026 · City · Day Month Year</p>
+  <div class="cover-affiliations">
+      <div class="affiliation">
+        <img
+          src="./images/disi.svg"
+          alt="University of Bologna"
+          class="affiliation-logo unibo-logo"
+        >
+        <div>
+          Department of Computer Science and Engineering,<br>
+          University of Bologna, Cesena, Italy
+        </div>
+      </div>
+      <div class="affiliation">
+        <img
+          src="./images/aarhus.svg"
+          alt="Aarhus University"
+          class="affiliation-logo aarhus-logo"
+        >
+        <div>
+          Department of Electrical and Computer Engineering,<br>
+          Aarhus University, Aarhus, Denmark
+        </div>
+      </div>
+  </div>
 </div>
 
 ---

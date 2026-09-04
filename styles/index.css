@@ -954,3 +954,51 @@ body,
   margin-top: 0.45rem;
   text-align: center;
 }
+
+.cover-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cover-authors {
+  text-align: center;
+}
+
+.cover-authors sup {
+  margin-left: 0.1em;
+  font-size: 0.65em;
+}
+
+.cover-affiliations {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 3rem;
+  align-items: start;
+}
+
+.affiliation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1.35;
+}
+
+.affiliation-logo {
+  display: block;
+  width: auto;
+  height: 80px;
+  object-fit: contain;
+}
+
+.unibo-logo {
+  max-width: 280px;
+}
+
+.aarhus-logo {
+  max-width: 180px;
+}
