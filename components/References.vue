@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { REFERENCES } from './references'
+import { REFERENCES } from './bibliography'
 
 // Renders the References slide from the shared bibliography, split into two
-// balanced columns. Editing ./references.ts updates this list automatically.
+// balanced columns. Editing ./bibliography.ts updates this list automatically.
 const entries = computed(() =>
   Object.keys(REFERENCES)
     .map(Number)

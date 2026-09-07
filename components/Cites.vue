@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { REFERENCES } from './references'
+import { REFERENCES } from './bibliography'
 
-// References live in ./references.ts (single source of truth). Each slide lists
+// References live in ./bibliography.ts (single source of truth). Each slide lists
 // only the numbers it cites; the footnote text is generated from the shared
 // `short` form, so numbering can never drift from the References slide.
 const props = defineProps<{ refs: number[] | string }>()
