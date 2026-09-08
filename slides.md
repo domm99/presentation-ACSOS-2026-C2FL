@@ -61,7 +61,7 @@ layout: two-cols
 
 # Intelligence at the edge
 
-**Collective Adaptive Systems** rely on machine learning directly on the devices — each node learning from what it locally senses.
+<p style="margin:0.6rem 0 0.9rem;font-size:0.95rem;color:var(--deck-ink,#1a1a1a);opacity:0.75;line-height:1.45"><strong>Collective Adaptive Systems</strong> rely on machine learning directly on the devices — each node learning from what it locally senses.</p>
 
 Paradigmatic domains:
 
@@ -79,10 +79,7 @@ Paradigmatic domains:
 
 <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:0.6rem">
   <img src="/figures/heterogeneity.png" alt="Spatially heterogeneous data distribution" style="width:100%;border-radius:8px" />
-  <p style="font-size:0.7rem;color:var(--deck-muted);text-align:center;margin:0">
-    Colour = local data distribution &nbsp;·&nbsp;
-    <strong>IID within</strong> each cluster, <strong>non-IID across</strong> clusters
-  </p>
+
 </div>
 
 <!--
@@ -190,7 +187,7 @@ layout: default
 
 # Mobility turns space into time
 
-A moving device experiences a **sequence** of different regional distributions:
+<p style="margin:0.55rem 0 0.8rem;font-size:0.95rem;color:var(--deck-ink,#1a1a1a);opacity:0.75">A moving device experiences a <strong>sequence</strong> of different regional distributions:</p>
 
 <div class="mt-3 mb-3 p-3 text-center" style="font-size:1.1rem;border:1.5px solid var(--deck-line);border-radius:6px;background:#fff">
   Area 0 → Area 1 → Area 2 → Area 3
@@ -218,29 +215,52 @@ This is the key conceptual pivot. The MobilityDrift component animates the devic
 
 ---
 
+# Research questions
+
+<div style="display:flex;gap:2rem;margin-top:2.5rem">
+  <div v-click="1" class="click-marker"/>
+  <div v-click="2" class="click-marker"/>
+  <div :style="{ border:'2px solid var(--deck-orange)', borderRadius:'10px', padding:'1.4rem 1.5rem', background:'#fff', display:'flex', flexDirection:'column', gap:'0.8rem', flex:1, transition:'opacity 0.4s ease, filter 0.4s ease', opacity: $clicks === 2 ? 0.35 : 1, filter: $clicks === 2 ? 'grayscale(0.5)' : 'none' }">
+    <div style="display:flex;align-items:center;gap:0.7rem">
+      <span style="background:var(--deck-orange);color:#fff;border-radius:5px;padding:0.2rem 0.7rem;font-weight:800;font-size:1.1rem;letter-spacing:0.04em">RQ1</span>
+      <span style="font-weight:700;font-size:0.95rem;color:var(--deck-ink)">Forgetting</span>
+    </div>
+    <p style="margin:0;font-size:0.88rem;line-height:1.6;color:var(--deck-ink)">Does node mobility in decentralized clustered FL induce <strong>sequential distribution shifts</strong> that lead to <strong>performance degradation</strong> and <strong>catastrophic forgetting</strong>?</p>
+  </div>
+  <div :style="{ border:'2px solid var(--deck-teal)', borderRadius:'10px', padding:'1.4rem 1.5rem', background:'#fff', display:'flex', flexDirection:'column', gap:'0.8rem', flex:1, transition:'opacity 0.4s ease, filter 0.4s ease', opacity: $clicks === 1 ? 0.35 : 1, filter: $clicks === 1 ? 'grayscale(0.5)' : 'none' }">
+    <div style="display:flex;align-items:center;gap:0.7rem">
+      <span style="background:var(--deck-teal);color:#fff;border-radius:5px;padding:0.2rem 0.7rem;font-weight:800;font-size:1.1rem;letter-spacing:0.04em">RQ2</span>
+      <span style="font-weight:700;font-size:0.95rem;color:var(--deck-ink)">Knowledge retention</span>
+    </div>
+    <p style="margin:0;font-size:0.88rem;line-height:1.6;color:var(--deck-ink)">Can a decentralized approach balancing <strong>local adaptation</strong> with <strong>global model integration</strong>, enriched with continual learning mechanisms, improve <strong>knowledge retention</strong> under mobility-induced drift?</p>
+  </div>
+</div>
+
+---
+
 # C²FL brings three mechanisms together
 
 <div class="grid grid-cols-3 gap-6 mt-8">
   <div style="border:1.5px solid var(--deck-teal);border-radius:8px;padding:1.1rem;background:#fff">
-    <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem">
+    <div style="display:flex;align-items:flex-start;gap:0.5rem;margin-bottom:0.5rem;min-height:2.6rem">
       <span style="background:var(--deck-teal);color:#fff;border-radius:50%;width:1.6rem;height:1.6rem;display:grid;place-items:center;font-weight:700;font-size:0.85rem;flex-shrink:0">1</span>
-      <h3 style="margin:0;font-size:0.95rem">Self-organizing clustering</h3>
+      <h3 style="margin:0;font-size:0.85rem">Decentralized Clustering</h3>
     </div>
-    <p style="margin:0;font-size:0.8rem;color:var(--deck-muted)">Devices autonomously form learning groups through leader election — no central coordinator, adapts to mobility.</p>
+    <p style="margin:0;font-size:0.8rem;color:var(--deck-muted)">Devices elect local leaders and join the nearest one — no fixed infrastructure, groups form and dissolve automatically as nodes move.</p>
   </div>
   <div style="border:1.5px solid var(--deck-orange);border-radius:8px;padding:1.1rem;background:#fff">
-    <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem">
+    <div style="display:flex;align-items:flex-start;gap:0.5rem;margin-bottom:0.5rem;min-height:2.6rem">
       <span style="background:var(--deck-orange);color:#fff;border-radius:50%;width:1.6rem;height:1.6rem;display:grid;place-items:center;font-weight:700;font-size:0.85rem;flex-shrink:0">2</span>
-      <h3 style="margin:0;font-size:0.95rem">Regional federated learning</h3>
+      <h3 style="margin:0;font-size:0.85rem">Intra-Cluster Federated Learning</h3>
     </div>
-    <p style="margin:0;font-size:0.8rem;color:var(--deck-muted)">Cluster-level consensus via collect-cast aggregation and gradient-cast dissemination — entirely decentralized.</p>
+    <p style="margin:0;font-size:0.8rem;color:var(--deck-muted)">Within each cluster, devices train locally and aggregate a shared model — federation stays within the region, entirely without a central server.</p>
   </div>
   <div style="border:1.5px solid var(--deck-green);border-radius:8px;padding:1.1rem;background:#fff">
-    <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem">
+    <div style="display:flex;align-items:flex-start;gap:0.5rem;margin-bottom:0.5rem;min-height:2.6rem">
       <span style="background:var(--deck-green);color:#fff;border-radius:50%;width:1.6rem;height:1.6rem;display:grid;place-items:center;font-weight:700;font-size:0.85rem;flex-shrink:0">3</span>
-      <h3 style="margin:0;font-size:0.95rem">Continual adaptation</h3>
+      <h3 style="margin:0;font-size:0.85rem">Continual Adaptation</h3>
     </div>
-    <p style="margin:0;font-size:0.8rem;color:var(--deck-muted)">Experience replay preserves past knowledge; dwell-time-aware averaging blends the regional consensus gradually.</p>
+    <p style="margin:0;font-size:0.8rem;color:var(--deck-muted)">Experience replay preserves knowledge from past regions; the new regional consensus is blended in gradually as the device settles.</p>
   </div>
 </div>
 
@@ -257,133 +277,93 @@ Present C²FL as the integration of three pieces. Emphasize that the novelty is 
 layout: two-cols
 ---
 
-<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.15rem"><span style="background:var(--deck-teal);color:#fff;border-radius:50%;width:1.8rem;height:1.8rem;display:grid;place-items:center;font-weight:800;font-size:1rem;flex-shrink:0">1</span><h1 style="margin:0;font-size:1.6rem;line-height:1.15">Self-organizing clustering</h1></div>
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.15rem"><span style="background:var(--deck-teal);color:#fff;border-radius:50%;width:1.8rem;height:1.8rem;display:grid;place-items:center;font-weight:800;font-size:1rem;flex-shrink:0">1</span><h1 style="margin:0;font-size:1.6rem;line-height:1.15">Decentralized Clustering</h1></div>
 
-Devices form spatial clusters via a **leader election** based on the S-building block (Sparse-choice) from aggregate computing.
+Devices organize into spatial clusters using a **distributed leader election** — each device picks the nearest active leader, with no fixed infrastructure and no central coordinator.
 
-Each device maintains:
-- **η** — the elected cluster leader ID
-- **g** — distance to that leader
-
-At each round, a node:
-1. collects leadership claims from neighbors
-2. keeps only those within radius **R**
-3. elects the highest-priority candidate
+Groups form and dissolve **automatically** as devices move: when a node drifts away from its leader, a new election triggers locally.
 
 ::right::
 
-<div style="font-size:0.82rem;display:flex;flex-direction:column;gap:0.7rem;margin-top:0.5rem">
+<div style="font-size:0.82rem;display:flex;flex-direction:column;gap:0.7rem;margin-top:0.5rem;padding-left:1.5rem">
   <div style="padding:0.6rem 0.8rem;border-left:3px solid var(--deck-teal);background:#fff;border-radius:4px">
-    <strong>Voronoi-like partition</strong><br>
-    Each node joins the cluster of its nearest leader — naturally aligning groups with the geographic data structure.
+    <strong>Leader election</strong><br>
+    Each device elects a local leader through neighborhood interactions — no fixed access point or server required.
   </div>
   <div style="padding:0.6rem 0.8rem;border-left:3px solid var(--deck-orange);background:#fff;border-radius:4px">
     <strong>Self-stabilizing</strong><br>
-    When a node moves beyond its leader's radius, claims expire, re-election fires automatically.
+    If a node moves away or a leader disappears, re-election fires automatically — the system recovers without intervention.
   </div>
   <div style="padding:0.6rem 0.8rem;border-left:3px solid var(--deck-green);background:#fff;border-radius:4px">
-    <strong>No central coordinator</strong><br>
-    Cluster membership, leader identity, and boundaries emerge from local interactions only.
+    <strong>Purely local</strong><br>
+    Membership and boundaries emerge from device-to-device interactions only — no global view is ever needed.
   </div>
-  <div style="margin-top:0.3rem;padding:0.5rem 0.7rem;background:var(--deck-teal-soft);border-radius:4px;font-size:0.77rem">
-    Built on <strong>FBFL</strong> (Field-Based Federated Learning) — previously validated for static CAS. C²FL extends it to mobile settings.
+  <div style="margin-top:0.3rem;padding:0.5rem 0.7rem;background:var(--deck-teal-soft);border-radius:4px;font-size:0.75rem">
+    Built on <strong>field-based FL</strong> — previously validated for static CAS <span style="color:var(--deck-orange);font-weight:600">[9, 4]</span>.
   </div>
 </div>
 
+<Cites refs="9,4" />
+
 <!--
-Explain the S-building block at the system level. The key properties are: local interactions only, convergence under static topology, and self-stabilization under mobility.
+Keep the focus on the intuition: no fixed infrastructure, self-repair under mobility.
 -->
 
 ---
-layout: two-cols
----
 
-<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.15rem"><span style="background:var(--deck-orange);color:#fff;border-radius:50%;width:1.8rem;height:1.8rem;display:grid;place-items:center;font-weight:800;font-size:1rem;flex-shrink:0">2</span><h1 style="margin:0;font-size:1.6rem;line-height:1.15">Regional federated learning</h1></div>
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.15rem"><span style="background:var(--deck-orange);color:#fff;border-radius:50%;width:1.8rem;height:1.8rem;display:grid;place-items:center;font-weight:800;font-size:1rem;flex-shrink:0">2</span><h1 style="margin:0;font-size:1.6rem;line-height:1.15">Intra-Cluster Federated Learning</h1></div>
 
-Within each cluster, C²FL builds a **regional consensus** via two aggregate-computing patterns:
+Within each cluster, devices **train locally** on their own data and share model updates to build a **regional consensus** — without any central server.
 
 <div style="margin-top:0.7rem;display:flex;flex-direction:column;gap:0.55rem;font-size:0.85rem">
   <div style="padding:0.55rem 0.75rem;border-left:3px solid var(--deck-teal);background:#fff;border-radius:4px">
-    <strong>Collect-cast (C-block)</strong><br>
-    Locally trained models flow toward the cluster leader following the distance field — a decentralized weighted average.
-  </div>
-  <div style="padding:0.55rem 0.75rem;border-left:3px solid var(--deck-orange);background:#fff;border-radius:4px">
-    <strong>Gradient-cast (G-block)</strong><br>
-    The regional consensus θₖ propagates back from the leader to every cluster member.
-  </div>
-</div>
-
-The resulting aggregation is:
-$$\theta_k^{(t+1)} = \frac{1}{N_k^{(t)}} \sum_{d \in \mathcal{R}_k^{(t)}} n_d^{(t)}\,\widetilde{\theta}_d^{(t+1)}$$
-
-::right::
-
-<div style="font-size:0.82rem">
-  <div style="border:1.5px solid var(--deck-line);border-radius:6px;overflow:hidden;margin-bottom:0.7rem">
-    <div style="background:var(--deck-teal);color:#fff;padding:0.4rem 0.7rem;font-size:0.75rem;font-weight:700;letter-spacing:0.05em">ROUND STRUCTURE</div>
-    <div style="display:flex;flex-direction:column;gap:0">
-      <div v-for="(ph, i) in [
-        {n:'1', t:'Clustering update', c:'var(--deck-teal)'},
-        {n:'2', t:'Continual local training', c:'var(--deck-green)'},
-        {n:'3', t:'Collect-cast (aggregate)', c:'var(--deck-teal)'},
-        {n:'4', t:'Gradient-cast (disseminate)', c:'var(--deck-teal)'},
-        {n:'5', t:'Adaptive averaging', c:'var(--deck-orange)'},
-      ]" :key="i"
-        style="display:flex;align-items:center;gap:0.5rem;padding:0.38rem 0.65rem;border-top:1px solid var(--deck-line)">
-        <span :style="{background: ph.c, color:'#fff', borderRadius:'50%', width:'1.3rem', height:'1.3rem', display:'grid', placeItems:'center', fontWeight:'700', fontSize:'0.68rem', flexShrink:0}">{{ ph.n }}</span>
-        <span style="font-size:0.78rem">{{ ph.t }}</span>
-      </div>
+    <strong>Aggregation</strong><br>
+    Model updates flow toward the cluster leader, which computes a weighted average — no data ever leaves the device.
+    <div style="margin:0.4rem 0 0.1rem;text-align:center;font-family:'Georgia',serif;font-size:0.83rem">
+      &#x3B8;<sub>cluster</sub> = &#x2211;<sub>i</sub> <span style="font-size:0.78rem">(n<sub>i</sub> / N)</span> &#x00B7; &#x3B8;<sub>i</sub>
     </div>
   </div>
-  <div style="padding:0.5rem 0.7rem;background:var(--deck-orange-soft);border-left:3px solid var(--deck-orange);border-radius:4px;font-size:0.77rem">
-    Multi-hop propagation introduces latency — devices perform a <strong>knowledge merging</strong> step to reconcile asynchronously received consensus with their current state.
+  <div style="padding:0.55rem 0.75rem;border-left:3px solid var(--deck-orange);background:#fff;border-radius:4px">
+    <strong>Dissemination</strong><br>
+    The regional consensus propagates back to every cluster member, replacing the old local model.
+  </div>
+  <div style="padding:0.55rem 0.75rem;border-left:3px solid var(--deck-green);background:#fff;border-radius:4px">
+    <strong>Fully decentralized</strong><br>
+    The cluster leader role is transient and elected locally — the system works with no permanent infrastructure.
   </div>
 </div>
 
 <!--
-Describe the two aggregate-computing communication patterns. The round table on the right shows all 5 phases of Algorithm 1 at a glance.
+Focus on the intuition: local training, regional aggregation, no server.
 -->
 
 ---
-layout: two-cols
----
 
-<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.15rem"><span style="background:var(--deck-green);color:#fff;border-radius:50%;width:1.8rem;height:1.8rem;display:grid;place-items:center;font-weight:800;font-size:1rem;flex-shrink:0">3</span><h1 style="margin:0;font-size:1.6rem;line-height:1.15">Continual adaptation</h1></div>
+<div style="display:flex;align-items:center;gap:0.6rem;margin-bottom:0.15rem"><span style="background:var(--deck-green);color:#fff;border-radius:50%;width:1.8rem;height:1.8rem;display:grid;place-items:center;font-weight:800;font-size:1rem;flex-shrink:0">3</span><h1 style="margin:0;font-size:1.6rem;line-height:1.15">Continual Adaptation</h1></div>
 
-Two complementary mechanisms counteract forgetting.
+Two complementary mechanisms prevent a device from forgetting what it learned in past regions.
 
-### Experience replay
-
-When a device **leaves a region**, its local dataset from that region is added to the replay memory **Mᵈ**.
-
-Future local training optimizes on current data **plus** replayed past samples:
-
-$$\widetilde{\theta}_d^{(t+1)} \approx \text{Update}\!\left(\theta_d^{(t)},\; \widehat{\mathcal{L}}_d^{(t)}(\theta)\right)$$
-
-where $\widehat{\mathcal{L}}$ mixes current and replayed losses.
-
-Replay data **stays local** — nothing extra is shared with other nodes.
-
-::right::
-
-### Dwell-time-aware averaging
-
-After receiving the regional consensus, the device blends it with its local model using an **adaptive mixing factor**:
-
-$$\alpha_d^{(t)} = \min\!\left\{\Gamma,\; \frac{s_d^{(t)}}{H}\right\}$$
-
-$$\theta_d^{(t+1)} = (1-\alpha_d^{(t)})\,\widetilde{\theta}_d^{(t+1)} + \alpha_d^{(t)}\,\theta_k^{(t+1)}$$
-
-<div style="margin-top:0.5rem;padding:0.5rem 0.7rem;background:var(--deck-teal-soft);border-left:3px solid var(--deck-teal);border-radius:4px;font-size:0.8rem">
-  <strong>Intuition:</strong> α starts near zero immediately after a region change and grows linearly with dwell time <em>s</em>, capping at Γ. The collective consensus is trusted more as the device settles in.
+<div style="margin-top:0.8rem;display:flex;flex-direction:column;gap:0.6rem;font-size:0.85rem">
+  <div style="padding:0.6rem 0.85rem;border-left:3px solid var(--deck-teal);background:#fff;border-radius:4px">
+    <strong>Experience replay</strong><br>
+    When a device moves, it retains a memory buffer of past samples. Training minimizes a mixed loss:
+    <div style="margin:0.45rem 0 0.1rem;text-align:center;font-family:'Georgia',serif;font-size:0.83rem;letter-spacing:0.01em">
+      &#x2112;(&#x3B8;) = (1&#x2212;&#x3BB;)&#x202F;&#x2112;<sub>curr</sub>(&#x3B8;) + &#x3BB;&#x202F;&#x2112;<sub>rep</sub>(&#x3B8;)
+    </div>
+  </div>
+  <div style="padding:0.6rem 0.85rem;border-left:3px solid var(--deck-orange);background:#fff;border-radius:4px">
+    <strong>Dwell-time-aware averaging</strong><br>
+    The cluster model is blended with the local one using a weight that grows with dwell time <em>t</em>:
+    <div style="margin:0.45rem 0 0.1rem;text-align:center;font-family:'Georgia',serif;font-size:0.83rem;letter-spacing:0.01em">
+      &#x3B8; &#x2190; (1&#x2212;&#x3B1;<sub>t</sub>)&#x202F;&#x3B8;<sub>local</sub> + &#x3B1;<sub>t</sub>&#x202F;&#x3B8;<sub>cluster</sub> &nbsp;,&nbsp; &#x3B1;<sub>t</sub> = 1&#x2212;<em>e</em><sup>&#x2212;t/&#x3C4;</sup>
+    </div>
+  </div>
 </div>
 
-<div style="margin-top:0.5rem;padding:0.5rem 0.7rem;background:var(--deck-orange-soft);border-left:3px solid var(--deck-orange);border-radius:4px;font-size:0.8rem">
-  Parameters: Γ = 0.3, H = 30 — α reaches its cap after ~9 rounds in the same region.
-</div>
+
 
 <!--
-Replay = memory from the past; adaptive averaging = careful integration of new regional knowledge. Stress that replay is privacy-preserving (no additional sharing).
+Two mechanisms: replay for the past, dwell-time averaging for the present.
 -->
 
 ---
@@ -399,12 +379,6 @@ Replay = memory from the past; adaptive averaging = careful integration of new r
   </div>
   <div style="padding:0.5rem 0.75rem;border-left:3px solid var(--deck-orange);background:#fff;border-radius:4px">
     <strong>Mobile devices</strong><br>20% of population — circular trajectory: 0→1→2→3 at rounds 30, 60, 90
-  </div>
-  <div style="padding:0.5rem 0.75rem;border-left:3px solid var(--deck-orange);background:#fff;border-radius:4px">
-    <strong>Local data</strong><br>≈200 samples per device per round; batch size 32
-  </div>
-  <div style="padding:0.5rem 0.75rem;border-left:3px solid var(--deck-green);background:#fff;border-radius:4px">
-    <strong>Model</strong><br>MLP — 2 hidden layers × 128 neurons, ReLU; Adam lr=0.001
   </div>
   <div style="padding:0.5rem 0.75rem;border-left:3px solid var(--deck-green);background:#fff;border-radius:4px">
     <strong>Evaluation</strong><br>120 rounds; 10 independent seeds; per-area accuracy + cumulative accuracy
@@ -455,10 +429,7 @@ Each move overwrites knowledge from the previous stay.
 
 <div style="margin-top:0.3rem;padding-left:1.5rem">
   <img src="./images/paper/moving-node-FL_merge.png" alt="FBFL: per-area accuracy for a mobile device" style="width:100%;border:1px solid var(--deck-line);border-radius:6px;box-shadow:0 2px 8px rgba(16,32,43,0.08)" />
-  <p style="font-size:0.7rem;color:var(--deck-muted);margin-top:0.4rem;text-align:center">
-    Per-area accuracy of a mobile device under FBFL.<br>
-    Vertical dashed lines mark mobility transitions (rounds 30, 60, 90).
-  </p>
+
 </div>
 
 <!--
@@ -494,10 +465,7 @@ layout: two-cols
 
 <div style="margin-top:0.3rem;padding-left:1.5rem">
   <img src="./images/paper/moving-node-C2FL_merge.png" alt="C²FL: per-area accuracy for a mobile device" style="width:100%;border:1px solid var(--deck-line);border-radius:6px;box-shadow:0 2px 8px rgba(16,32,43,0.08)" />
-  <p style="font-size:0.7rem;color:var(--deck-muted);margin-top:0.4rem;text-align:center">
-    Per-area accuracy of the same mobile device under C²FL.<br>
-    Vertical dashed lines mark mobility transitions (rounds 30, 60, 90).
-  </p>
+
 </div>
 
 <!--
@@ -509,7 +477,7 @@ layout: two-cols
 ---
 
 <h1 style="margin:0 0 0.15rem;font-size:1.45rem;line-height:1.2">C²FL outperforms all baselines</h1>
-<p style="margin:0 0 0.6rem;font-size:0.82rem;color:var(--deck-muted)"><strong>Cumulative accuracy</strong> — avg per-area accuracy over all regions and all mobile devices.</p>
+<div style="margin:0 0 0.6rem;font-size:0.82rem;color:var(--deck-ink)"><strong style="color:var(--deck-teal)">Cumulative accuracy</strong> — avg per-area accuracy over all regions and all mobile devices.</div>
 
 <div style="display:flex;flex-direction:column;gap:0.32rem;font-size:0.8rem;margin-bottom:0.65rem">
   <div style="display:flex;gap:0.5rem;align-items:center">
@@ -534,10 +502,7 @@ layout: two-cols
 
 <div style="margin-top:0.5rem;padding-left:1.5rem">
   <img src="./images/paper/comparison.png" alt="Cumulative accuracy comparison" style="width:100%;border:1px solid var(--deck-line);border-radius:6px;box-shadow:0 2px 8px rgba(16,32,43,0.08)" />
-  <p style="font-size:0.7rem;color:var(--deck-muted);margin-top:0.4rem;text-align:center">
-    Cumulative accuracy (CAcc) across 120 rounds for all four methods.<br>
-    Shaded bands = 95% CI over 10 random seeds.
-  </p>
+
 </div>
 
 <!--
@@ -546,32 +511,29 @@ The quantitative answer to RQ2. C²FL strictly dominates at every round after th
 
 ---
 
-# Summary
+# Takeaways
 
-<div class="grid grid-cols-3 gap-6 mt-8" style="font-size:0.85rem">
+<div class="grid grid-cols-3 gap-6 mt-6" style="font-size:0.85rem">
   <div style="padding:0.9rem;border:1.5px solid var(--deck-teal);border-radius:8px;background:#fff">
-    <div style="font-size:1.8rem;text-align:center;margin-bottom:0.5rem">🗺️</div>
     <h3 style="font-size:0.9rem;margin:0 0 0.4rem">Spatial → temporal</h3>
     <p style="margin:0;color:var(--deck-muted)">Mobility turns a distributed spatial learning problem into a per-device continual learning stream — and standard CFL ignores this.</p>
   </div>
   <div style="padding:0.9rem;border:1.5px solid var(--deck-orange);border-radius:8px;background:#fff">
-    <div style="font-size:1.8rem;text-align:center;margin-bottom:0.5rem">🔄</div>
     <h3 style="font-size:0.9rem;margin:0 0 0.4rem">C²FL: unified design</h3>
     <p style="margin:0;color:var(--deck-muted)">Self-organizing clusters + decentralized FL + experience replay + adaptive averaging, all in one protocol round.</p>
   </div>
   <div style="padding:0.9rem;border:1.5px solid var(--deck-green);border-radius:8px;background:#fff">
-    <div style="font-size:1.8rem;text-align:center;margin-bottom:0.5rem">📈</div>
     <h3 style="font-size:0.9rem;margin:0 0 0.4rem">Better retention</h3>
     <p style="margin:0;color:var(--deck-muted)">C²FL outperforms all baselines in cumulative accuracy, retaining past-region knowledge while adapting to new environments.</p>
   </div>
 </div>
 
-<div class="mt-8" style="padding:0.9rem 1.2rem;background:var(--deck-teal-soft);border-radius:8px">
-  <strong>Future directions:</strong>
-  more complex sensing datasets ·
-  regularization-based and hybrid CL strategies ·
-  gradual (non-abrupt) spatial distribution shifts ·
-  bounded replay memory policies
+<div class="mt-6" style="padding:1rem 1.2rem;background:#fff;border:2px solid var(--deck-ink);border-radius:8px">
+  <div style="font-size:0.95rem;font-weight:700;color:var(--deck-ink);margin-bottom:0.5rem">Future work</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.3rem 1.5rem;font-size:0.82rem;color:var(--deck-ink)">
+    <div>→ More complex sensing datasets</div>
+    <div>→ Gradual (non-abrupt) spatial distribution shifts</div>
+  </div>
 </div>
 
 <!--
@@ -579,33 +541,20 @@ Bring it back to the central insight. Three bullets map to the three contributio
 -->
 
 ---
-layout: two-cols
----
 
 # Thank you
 
-<div style="margin-top:1.5rem;display:flex;flex-direction:column;gap:0.8rem;font-size:0.88rem">
+<div style="margin-top:1.2rem;display:flex;flex-direction:column;align-items:center;gap:0.8rem;font-size:0.88rem;text-align:center">
   <div>
     <strong>Davide Domini</strong> — davide.domini@unibo.it<br>
     University of Bologna, Cesena
   </div>
-  <div style="padding:0.6rem 0.8rem;background:var(--deck-teal-soft);border-radius:6px">
-    📦 <strong>Reproducibility</strong><br>
+  <div style="padding:0.6rem 1.2rem;background:var(--deck-teal-soft);border-radius:6px;display:flex;flex-direction:column;align-items:center">
+    <strong>Reproducibility</strong><br>
     Code, data, and scripts available at<br>
-    <code style="font-size:0.8rem">github.com/domm99/experiments-2026-ACSOS-CL-for-nodes-movement-in-CAS</code>
+    <img src="/figures/qr.svg" alt="QR code — repository" style="width:130px;height:130px;display:block;margin-top:0.5rem" />
   </div>
-</div>
-
-::right::
-
-<div style="margin-top:1rem;font-size:0.82rem;display:flex;flex-direction:column;gap:0.6rem">
-  <strong style="font-size:0.9rem">Selected references</strong>
-  <div style="color:var(--deck-muted)">Domini et al., <em>FBFL: Field-Based Federated Learning</em>, LMCS 2026</div>
-  <div style="color:var(--deck-muted)">Domini et al., <em>ProFed benchmark</em>, JORS 2026</div>
-  <div style="color:var(--deck-muted)">Parisi et al., <em>Continual lifelong learning with neural networks</em>, Neural Networks 2019</div>
-  <div style="color:var(--deck-muted)">McMahan et al., <em>Communication-efficient learning of deep networks</em>, AISTATS 2017</div>
-  <div style="color:var(--deck-muted)">Ghosh et al., <em>An efficient framework for clustered federated learning</em>, IEEE Trans. Inf. Theory 2022</div>
-  <div style="margin-top:0.5rem;padding:0.5rem 0.7rem;background:var(--deck-orange-soft);border-left:3px solid var(--deck-orange);border-radius:4px">
+  <div style="padding:0.5rem 1.2rem;background:var(--deck-orange-soft);border-left:3px solid var(--deck-orange);border-radius:4px;font-size:0.82rem;text-align:left">
     <strong>Acknowledgments</strong><br>
     Lukas Esterle: Independent Research Fund Denmark, FLOCKD project (1032-00179B).<br>
     Lorenzo Pellegrini: European funds, Emilia-Romagna Region, FSE+ 2021–2027.
@@ -615,3 +564,9 @@ layout: two-cols
 <!--
 Close slide. Invite questions. Repository link is real.
 -->
+
+---
+
+# References
+
+<References />

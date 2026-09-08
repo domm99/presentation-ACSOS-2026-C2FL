@@ -239,7 +239,7 @@ function arrowHeadPath(x1: number, y1: number, x2: number, y2: number, size = 3.
   isolation: isolate;
 }
 
-.traffic-city.mode-clustered { height: 16.5rem; }
+.traffic-city.mode-clustered { height: 14rem; }
 
 .map-texture {
   position: absolute;

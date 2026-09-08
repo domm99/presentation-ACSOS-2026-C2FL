@@ -26,7 +26,7 @@ export const REFERENCES: Record<number, Reference> = {
     full: 'A. Ghosh et al. <em>An Efficient Framework for Clustered Federated Learning</em>. IEEE Transactions on Information Theory, 2022.',
   },
   4: {
-    short: 'Domini et al. — Proximity-aware self-federated learning. IoT, 2026',
+    short: 'Domini et al. — Decentralized proximity-aware clustering for self-federated learning. IoT, 2025',
     full: 'D. Domini et al. <em>Decentralized proximity-aware clustering for collective self-federated learning</em>. Internet of Things, 2026.',
   },
   5: {
@@ -44,5 +44,9 @@ export const REFERENCES: Record<number, Reference> = {
   8: {
     short: 'He et al. — Deep Residual Learning. CVPR, 2016',
     full: 'K. He et al. <em>Deep Residual Learning for Image Recognition</em>. CVPR, 2016.',
+  },
+  9: {
+    short: 'Domini et al. — FBFL: A field-based coordination approach for federated learning. LMCS, 2026',
+    full: 'D. Domini et al. <em>FBFL: A field-based coordination approach for federated learning</em>. Logical Methods in Computer Science, 2026.',
   },
 }
